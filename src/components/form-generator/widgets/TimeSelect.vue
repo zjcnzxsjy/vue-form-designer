@@ -1,0 +1,43 @@
+<template>
+  <el-time-select
+    v-model="currentValue"
+    :picker-options="pickerOptions"
+    v-bind="options"
+    v-on="$listeners"
+    :style="style">
+  </el-time-select>
+</template>
+<script>
+import mixins from '@/components/form-generator/mixins'
+
+export default {
+  name: "PITimeSelect",
+  props: {
+    value: {},
+    prop: String,
+    options: Object
+  },
+  mixins: [mixins],
+  inject: {
+    formGenerator: {
+      default: ''
+    }
+  },
+  computed: {
+    pickerOptions() {
+      console.log(this.options)
+      const ret = {
+        start: this.options.start,
+        end: this.options.end,
+        start: this.options.step,
+        start: this.options.minTime
+        
+      };
+      if (this.options.maxTime) {
+        ret.maxTime = this.options.maxTime;
+      }
+      return ret;
+    }
+  }
+}
+</script>
