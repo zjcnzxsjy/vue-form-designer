@@ -70,11 +70,9 @@ export default {
   },
   methods: {
     handleSearch(params) {
-      console.log(22)
       this.$emit("on-search", params);
     },
     handleReset() {
-      console.log(11)
       this.$emit("on-reset");
     }
   }

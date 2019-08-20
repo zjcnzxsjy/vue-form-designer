@@ -3,6 +3,8 @@
     type="text"
     v-model="currentValue"
     :maxlength="options.maxlength !== '' ? options.maxlength : null"
+    :size="size"
+    :disabled="isDisabled"
     v-bind="options"
     v-on="$listeners"
     :style="style">
@@ -21,11 +23,6 @@ export default {
     prop: String,
     options: Object
   },
-  mixins: [mixins],
-  inject: {
-    formGenerator: {
-      default: ''
-    }
-  }
+  mixins: [mixins]
 }
 </script>

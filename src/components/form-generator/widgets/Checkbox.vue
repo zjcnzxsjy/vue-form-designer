@@ -7,6 +7,7 @@
       v-bind="options"
       :size="size"
       :value="checkAll"
+      :disabled="isDisabled"
       :indeterminate="indeterminate"
       @click.prevent.native="handleCheckAll"
       :class=" !options.vertical || options.isButton ?  'checkAll-align' : null">
@@ -16,6 +17,7 @@
       <el-checkbox-group
         v-if="!options.isButton"
         @change="checkAllGroupChange "
+        :disabled="isDisabled"
         v-bind="options"
         v-model="currentValue"
         :size="size"

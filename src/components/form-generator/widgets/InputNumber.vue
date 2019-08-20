@@ -2,6 +2,8 @@
   <el-input-number
     v-model="currentValue"
     :controls-position="options.controlsPosition? 'right' : null"
+    :disabled="isDisabled"
+    :size="size"
     v-bind="options"
     v-on="$listeners"
     :style="style">
@@ -18,11 +20,6 @@ export default {
     prop: String,
     options: Object
   },
-  mixins: [mixins],
-  inject: {
-    formGenerator: {
-      default: ''
-    }
-  }
+  mixins: [mixins]
 }
 </script>

@@ -2,6 +2,8 @@
   <el-cascader
     v-model="currentValue"
     :options="children"
+    :size="size"
+    :disabled="isDisabled"
     v-bind="options"
     :style="style">
   </el-cascader>

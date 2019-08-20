@@ -2,6 +2,8 @@
   <el-time-picker
     v-model="currentValue"
     :picker-options="pickerOptions"
+    :disabled="isDisabled"
+    :size="size"
     v-bind="options"
     v-on="$listeners"
     :style="style">
@@ -18,11 +20,6 @@ export default {
     options: Object
   },
   mixins: [mixins],
-  inject: {
-    formGenerator: {
-      default: ''
-    }
-  },
   computed: {
     pickerOptions() {
       const ret = {};

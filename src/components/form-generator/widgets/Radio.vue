@@ -3,6 +3,8 @@
   <el-radio-group
     v-model="currentValue"
     :type="options.type ? 'button' : null"
+    :disabled="isDisabled"
+    :size="size"
     v-bind="options">
     <el-radio
       v-for="(child, index) in children"
@@ -26,11 +28,6 @@ export default {
     children: Array
   },
   mixins: [mixins],
-  inject: {
-    formGenerator: {
-      default: ''
-    }
-  },
   data(){
      return {
        currentValue:""

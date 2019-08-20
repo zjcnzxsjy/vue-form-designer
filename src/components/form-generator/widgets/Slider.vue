@@ -1,6 +1,8 @@
 <template>
   <el-slider
     v-model="currentValue"
+    :disabled="isDisabled"
+    :size="size"
     v-bind="options"
     :style="style">
   </el-slider>

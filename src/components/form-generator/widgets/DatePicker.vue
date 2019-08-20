@@ -1,6 +1,8 @@
 <template>
   <el-date-picker
     v-model="currentValue"
+    :disabled="isDisabled"
+    :size="size"
     v-bind="options"
     v-on="$listeners"
     :style="style">
@@ -17,11 +19,6 @@ export default {
     prop: String,
     options: Object
   },
-  mixins: [mixins],
-  inject: {
-    formGenerator: {
-      default: ''
-    }
-  }
+  mixins: [mixins]
 }
 </script>

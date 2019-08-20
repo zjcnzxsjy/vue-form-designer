@@ -1,6 +1,8 @@
 <template>
   <div>
     <el-button
+      :disabled="isDisabled"
+      :size="size"
       v-bind="options" 
       @click="handleReset"
       :style="style">
@@ -19,10 +21,19 @@ export default {
   mixins: [Emitter],
   inject: {
     formGenerator: {
-      default: ''
+      default: ""
+    },
+    formDesigner: {
+      default: ""
     }
   },
   computed: {
+    size() {
+      return this.options.size || this.formDesigner.formConfigData.size;
+    },
+    isDisabled() {
+      return this.options.disabled || this.formDesigner.formConfigData.disabled
+    },
     style() {
       const style = {};
       const width = this.options.width;

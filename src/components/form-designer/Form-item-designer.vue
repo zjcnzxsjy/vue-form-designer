@@ -4,7 +4,7 @@
       'grid-item-label-left' : formConfigData.labelPosition === 'left',
       'grid-item-label-right' : formConfigData.labelPosition === 'right',
       'grid-item-label-top' : (formConfigData.labelPosition === 'top' && !showGridButtonItems.includes(config.type)) || !formConfigData.labelWidth,
-      'is-required': config.required
+      'is-required': !formConfigData.hideRequiredAsterisk && config.required
     }">
     <div class="icon-wrapper">
       <svg-icon icon-class="copy" class-name="small-icon" @click.stop="handleCopy"></svg-icon>
@@ -173,11 +173,8 @@ export default {
 .is-required .grid-item_label:before {
   content: '*';
   display: inline-block;
-  margin-right: 2px;
-  line-height: 0;
-  font-family: SimSun;
-  font-size: 12px;
-  color: #F5222D;
+  margin-right: 4px;
+  color: #F56C6C;
 }
 .grid-item-label-top {
   &:before {

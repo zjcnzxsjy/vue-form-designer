@@ -20,6 +20,18 @@
           <el-input-number size="mini" controls-position="right" v-model="data.labelWidth"></el-input-number>
         </div>
       </div>
+      <div class="setting-field" v-show="data.labelPosition !== 'top'">
+        <span class="field-name" title="表单域标签的后缀">表单域标签的后缀</span>
+        <div class="field-container" style="width: 220px;">
+          <el-input size="mini" v-model="data.labelSuffix"></el-input>
+        </div>
+      </div>
+      <div class="setting-field">
+        <span class="field-name" title="是否显示必填字段的标签旁边的红色星号">隐藏必填字段的标签旁边的红色星号</span>
+        <div class="field-container" style="width: 220px;">
+          <el-checkbox v-model="data.hideRequiredAsterisk"></el-checkbox>
+        </div>
+      </div>
       <div class="setting-field">
         <span class="field-name" title="显示校验错误信息">校验错误信息</span>
         <div class="field-container" style="width: 220px;">
@@ -27,15 +39,36 @@
         </div>
       </div>
       <div class="setting-field">
-        <span class="field-name" title="第一个错误输入框获取焦点">显示错误焦点</span>
+        <span class="field-name" title="是否在输入框中显示校验结果反馈图标">输入框中显示校验结果反馈图标</span>
         <div class="field-container" style="width: 220px;">
-          <el-checkbox v-model="data.errorFocus"></el-checkbox>
+          <el-checkbox v-model="data.statusIcon"></el-checkbox>
         </div>
       </div>
       <div class="setting-field">
-        <span class="field-name" title="失焦触发校验">失焦触发校验</span>
+        <span class="field-name" title="是否在 rules 属性改变后立即触发一次验证">校验规则改变后立即触发一次验证</span>
         <div class="field-container" style="width: 220px;">
-          <el-checkbox v-model="data.onlyBlurRequire"></el-checkbox>
+          <el-checkbox v-model="data.validateOnRuleChange"></el-checkbox>
+        </div>
+      </div>
+      <div class="setting-field">
+        <span class="field-name">尺寸</span>
+        <div class="field-container" style="width: 220px;">
+          <el-select 
+            v-model="data.size" 
+            size="mini" 
+            clearable
+            popperClass="select-down" 
+            style="width: 220px;">
+            <el-option value="medium">medium</el-option>
+            <el-option value="small">small</el-option>
+            <el-option value="mini">mini</el-option>
+          </el-select>
+        </div>
+      </div>
+      <div class="setting-field">
+        <span class="field-name">禁用表单内组件</span>
+        <div class="field-container" style="width: 220px;">
+          <el-checkbox v-model="data.disabled"></el-checkbox>
         </div>
       </div>
     </div>
@@ -129,14 +162,9 @@ export default {
             border-color:#fff;
           }
         }
-        .h-select {
-          .h-select-selection {
-            background: #0e1013;
-            border-color: #282f3a;
-          }
-          .h-select-dropdown {
-            background-color: #0e1013;
-          }
+        .el-select .el-tag.el-tag--info {
+          background-color: #0e1013;
+          border-color: #282f3a;
         }
         .el-radio-group {
           .el-radio-button {
@@ -192,6 +220,19 @@ export default {
       .field-inline {
         display: flex;
       }
+    }
+  }
+}
+.el-select-dropdown {
+  .el-select-dropdown__item {
+    &:hover, &.hover {
+      background-color: #1b1f25;
+    }
+  }
+  &.is-multiple .el-select-dropdown__item.selected {
+    background-color: #1b1f25;
+    &.hover {
+      background-color: #1b1f25;
     }
   }
 }

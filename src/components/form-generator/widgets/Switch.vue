@@ -1,6 +1,8 @@
 <template>
   <el-switch
     v-model="currentValue"
+    :disabled="isDisabled"
+    :size="size"
     v-bind="options"
     :style="style">
   </el-switch>

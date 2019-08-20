@@ -1,6 +1,8 @@
 <template>
   <el-rate
     v-model="currentValue"
+    :disabled="isDisabled"
+    :size="size"
     v-bind="options"
     :style="style">
   </el-rate>
@@ -16,11 +18,6 @@ export default {
     prop: String
   },
   mixins: [mixins],
-  inject: {
-    formGenerator: {
-      default: ''
-    }
-  },
   data() {
     return {
       currentValue: this.value || 0

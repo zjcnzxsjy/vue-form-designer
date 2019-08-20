@@ -133,7 +133,7 @@
       :visible.sync="showPreviewForm"
       title="预览"
       :close-on-click-modal="false"
-      width="80%">
+      :fullscreen="true">
       <form-generator 
         v-if="showPreviewForm"
         :schema="schema" 
@@ -144,9 +144,8 @@
       title="生成的JSON"
       :visible.sync="showJSON"
       :close-on-click-modal="false"
-      width='800'
-      height='400'>
-      <vue-ace-editor v-if="showJSON" :value="schemaString" lang="json" theme="xcode" :readOnly="true"></vue-ace-editor>
+      width='800'>
+      <vue-ace-editor v-if="showJSON" :value="schemaString" lang="json" theme="xcode" :readOnly="true" style="height:300px;"></vue-ace-editor>
       <div slot="footer">
         <el-button type="primary" icon="ios-copy-outline" v-clipboard:copy="schemaString" v-clipboard:success="handleCopy">复制</el-button>
         <el-button type="ghost" @click="handleClose('showJSON')">取消</el-button>
@@ -180,6 +179,11 @@ export default {
   },
   directives: {
     clipboard
+  },
+  provide() {
+    return {
+      formDesigner: this
+    }
   },
   data() {
     return {

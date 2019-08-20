@@ -1,13 +1,15 @@
 <template>
   <el-select
     v-model="currentValue"
+    :disabled="isDisabled"
     v-bind="options"
     :style="style">
     <el-option
       v-for="child in children"
       :key="child.uuid"
       :value="child.value"
-      :disabled="child.disabled">
+      :disabled="child.disabled"
+      :size="size">
       {{child.label}}
     </el-option>
   </el-select>

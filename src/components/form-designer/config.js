@@ -2,14 +2,13 @@ export const basicComponents = {
 	"form": {
 		"type": "PIForm",
 		"labelPosition": "right",
-		"labelWidth": 80,
+		"labelWidth": 100,
 		"labelSuffix": "",
 		"hideRequiredAsterisk": false,
 		"showMessage": true,
-		"errorFocus": false,
 		"statusIcon": false,
 		"validateOnRuleChange": true,
-		"size": "meduim",
+		"size": "",
 		"disabled": false
 	},
 	"text": {
@@ -30,7 +29,7 @@ export const basicComponents = {
 		"options": {
 			"size": {
 				"label": "尺寸",
-				"value": "small",
+				"value": "",
 				"type": "select",
 				"children": [{
 					"label": "medium",
@@ -41,7 +40,10 @@ export const basicComponents = {
 				}, {
 					"label": "mini",
 					"value": "mini"
-				}]
+				}],
+				"options": {
+					"clearable": true
+				}
 			},
 			"show-word-limit": {
 				"label": "显示输入字数统计",
@@ -123,7 +125,7 @@ export const basicComponents = {
 		"options": {
 			"size": {
 				"label": "尺寸",
-				"value": "small",
+				"value": "",
 				"type": "select",
 				"children": [{
 					"label": "medium",
@@ -134,7 +136,10 @@ export const basicComponents = {
 				}, {
 					"label": "mini",
 					"value": "mini"
-				}]
+				}],
+				"options": {
+					"clearable": true
+				}
 			},
 			"show-word-limit": {
 				"label": "显示输入字数统计",
@@ -236,7 +241,7 @@ export const basicComponents = {
 			},
 			"size": {
 				"label": "尺寸",
-				"value": "small",
+				"value": "",
 				"type": "select",
 				"children": [{
 					"label": "large",
@@ -244,7 +249,10 @@ export const basicComponents = {
 				}, {
 					"label": "small",
 					"value": "small"
-				}]
+				}],
+				"options": {
+					"clearable": true
+				}
 			},
 			"disabled": {
 				"label": "禁用",
@@ -306,7 +314,7 @@ export const basicComponents = {
 			},
 			"size": {
 				"label": "尺寸",
-				"value": "small",
+				"value": "",
 				"type": "select",
 				"children": [{
 					"label": "medium",
@@ -317,7 +325,10 @@ export const basicComponents = {
 				}, {
 					"label": "mini",
 					"value": "mini"
-				}]
+				}],
+				"options": {
+					"clearable": true
+				}
 			},
 			"placeholder": {
 				"label": "占位文本",
@@ -387,7 +398,7 @@ export const basicComponents = {
 		"options": {
 			"size": {
 				"label": "尺寸",
-				"value": "small",
+				"value": "",
 				"type": "select",
 				"children": [{
 					"label": "meduim",
@@ -398,7 +409,10 @@ export const basicComponents = {
 				}, {
 					"label": "mini",
 					"value": "mini"
-				}]
+				}],
+				"options": {
+					"clearable": true
+				}
 			},
 			"type": {
 				"label": "button样式",
@@ -463,7 +477,7 @@ export const basicComponents = {
 			// },
 			"size": {
 				"label": "尺寸",
-				"value": "small",
+				"value": "",
 				"type": "select",
 				"children": [{
 					"label": "medium",
@@ -474,7 +488,10 @@ export const basicComponents = {
 				}, {
 					"label": "mini",
 					"value": "mini"
-				}]
+				}],
+				"options": {
+					"clearable": true
+				}
 			},
 			"border": {
 				"label": "显示边框",
@@ -574,7 +591,7 @@ export const basicComponents = {
 			},
 			"size": {
 				"label": "尺寸",
-				"value": "small",
+				"value": "",
 				"type": "select",
 				"children": [{
 					"label": "meduim",
@@ -585,7 +602,10 @@ export const basicComponents = {
 				}, {
 					"label": "mini",
 					"value": "mini"
-				}]
+				}],
+				"options": {
+					"clearable": true
+				}
 			},
 			"range-separator": {
 				"label": "选择范围时的分隔符",
@@ -670,7 +690,7 @@ export const basicComponents = {
 			},
 			"size": {
 				"label": "尺寸",
-				"value": "small",
+				"value": "",
 				"type": "select",
 				"children": [{
 					"label": "meduim",
@@ -681,7 +701,10 @@ export const basicComponents = {
 				}, {
 					"label": "mini",
 					"value": "mini"
-				}]
+				}],
+				"options": {
+					"clearable": true
+				}
 			},
 			"disabled": {
 				"label": "禁用",
@@ -833,7 +856,7 @@ export const basicComponents = {
 			},
 			"size": {
 				"label": "尺寸",
-				"value": "small",
+				"value": "",
 				"type": "select",
 				"children": [{
 					"label": "medium",
@@ -844,7 +867,10 @@ export const basicComponents = {
 				}, {
 					"label": "mini",
 					"value": "mini"
-				}]
+				}],
+				"options": {
+					"clearable": true
+				}
 			},
 			"disabled": {
 				"label": "禁用状态",
@@ -1019,7 +1045,7 @@ export const basicComponents = {
 		"options": {
 			"size": {
 				"label": "尺寸",
-				"value": "small",
+				"value": "",
 				"type": "select",
 				"children": [
 					{
@@ -1034,7 +1060,10 @@ export const basicComponents = {
 						"label": "mini",
 						"value": "mini"
 					}
-				]
+				],
+				"options": {
+					"clearable": true
+				}
 			},
 			"placeholder": {
 				"label": "占位文本",
@@ -1177,7 +1206,7 @@ export const basicComponents = {
 			},
 			"input-size": {
 				"label": "尺寸",
-				"value": "small",
+				"value": "",
 				"type": "select",
 				"children": [{
 					"label": "large",
@@ -1191,7 +1220,10 @@ export const basicComponents = {
 				}, {
 					"label": "mini",
 					"value": "mini"
-				}]
+				}],
+				"options": {
+					"clearable": true
+				}
 			},
 			"show-stops": {
 				"label": "间断点",
@@ -1261,7 +1293,7 @@ export const basicComponents = {
 			},
 			"size": {
 				"label": "尺寸",
-				"value": "small",
+				"value": "",
 				"type": "select",
 				"children": [{
 					"label": "medium",
@@ -1272,7 +1304,10 @@ export const basicComponents = {
 				}, {
 					"label": "mini",
 					"value": "mini"
-				}]
+				}],
+				"options": {
+					"clearable": true
+				}
 			},
 			"icon": {
 				"label": "图标类型",
@@ -1337,7 +1372,7 @@ export const basicComponents = {
 			},
 			"size": {
 				"label": "尺寸",
-				"value": "small",
+				"value": "",
 				"type": "select",
 				"children": [{
 					"label": "medium",
@@ -1348,7 +1383,10 @@ export const basicComponents = {
 				}, {
 					"label": "mini",
 					"value": "mini"
-				}]
+				}],
+				"options": {
+					"clearable": true
+				}
 			},
 			"icon": {
 				"label": "图标类型",

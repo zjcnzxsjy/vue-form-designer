@@ -71,13 +71,15 @@
                             v-else-if="data.options[key].type === 'input-number'" 
                             size="mini" 
                             v-model="data.options[key].value" 
-                            controls-position="right">
+                            controls-position="right"
+                            v-bind="data.options[key].options">
                           </el-input-number>
                           <el-checkbox v-else-if="data.options[key].type === 'checkbox'" size="mini" v-model="data.options[key].value"></el-checkbox>
                           <el-select 
                             v-else-if="data.options[key].type === 'select'" 
                             size="mini" 
                             v-model="data.options[key].value"
+                            v-bind="data.options[key].options"
                             popper-class="select-down">
                             <el-option v-for="option in data.options[key].children" :key="option.value" :value="option.value">
                               {{option.label}}
