@@ -67,6 +67,7 @@ export default {
 
     this.$on("search", this.handleSearch);
     this.$on("reset", this.handleReset);
+    this.$on("button-click", this.handleClick);
   },
   methods: {
     handleSearch(params) {
@@ -74,6 +75,9 @@ export default {
     },
     handleReset() {
       this.$emit("on-reset");
+    },
+    handleClick(params) {
+      this.$emit("on-button-click", params);
     }
   }
 }

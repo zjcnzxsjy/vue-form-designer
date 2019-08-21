@@ -1404,5 +1404,89 @@ export const basicComponents = {
 				"type": "input"
 			}
 		}
+	},
+	"customBtn": {
+		"type": "PICustomButton",
+		"label": "自定义",
+		"span": {
+			"span": 4,
+			"lg": 4,
+			"md": 4,
+			"sm": 4,
+			"xs": 4
+		},
+		"options": {
+			"type": {
+				"label": "类型",
+				"value": "ghost",
+				"type": "select",
+				"children": [{
+					"label": "primary",
+					"value": "primary"
+				}, {
+					"label": "ghost",
+					"value": "ghost"
+				}, {
+					"label": "dashed",
+					"value": "dashed"
+				}, {
+					"label": "text",
+					"value": "text"
+				}, {
+					"label": "info",
+					"value": "info"
+				}, {
+					"label": "success",
+					"value": "success"
+				}, {
+					"label": "warning",
+					"value": "warning"
+				}, {
+					"label": "error",
+					"value": "error"
+				}, {
+					"label": "transparent",
+					"value": "transparent"
+				}]
+			},
+			"size": {
+				"label": "尺寸",
+				"value": "",
+				"type": "select",
+				"children": [{
+					"label": "medium",
+					"value": "medium"
+				}, {
+					"label": "small",
+					"value": "small"
+				}, {
+					"label": "mini",
+					"value": "mini"
+				}],
+				"options": {
+					"clearable": true
+				}
+			},
+			"icon": {
+				"label": "图标类型",
+				"value": "",
+				"type": "input"
+			},
+			"round": {
+				"label": "圆角",
+				"value": false,
+				"type": "checkbox"
+			},
+			"width": {
+				"label": "宽度",
+				"value": "",
+				"type": "input"
+			},
+			"name": {
+				"label": "属性",
+				"value": "",
+				"type": "input"
+			}
+		}
 	}
 }

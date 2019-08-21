@@ -270,6 +270,7 @@ export default {
             {
               label: "自定义",
               iconClass: "custom_btn",
+              widget: "customBtn"
             }
           ]
         },

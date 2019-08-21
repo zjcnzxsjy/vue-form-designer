@@ -7,8 +7,12 @@
       'is-required': !formConfigData.hideRequiredAsterisk && config.required
     }">
     <div class="icon-wrapper">
-      <svg-icon icon-class="copy" class-name="small-icon" @click.stop="handleCopy"></svg-icon>
-      <svg-icon icon-class="remove" class-name="small-icon" @click.stop="handleRemove"></svg-icon>
+      <el-tooltip content="复制">
+        <svg-icon icon-class="copy" class-name="small-icon small-icon-copy" @click.stop="handleCopy"></svg-icon>
+      </el-tooltip>
+      <el-tooltip content="删除">
+        <svg-icon icon-class="remove" class-name="small-icon small-icon-remove" @click.stop="handleRemove"></svg-icon>
+      </el-tooltip>
     </div>
     <label class="grid-item_label" 
       v-if="!showGridButtonItems.includes(config.type)" 
@@ -149,6 +153,12 @@ export default {
       & + .small-icon {
         margin-left: 4px;
       }
+    }
+    .small-icon-copy {
+      color: #409EFF;
+    }
+    .small-icon-remove {
+      color: #F56C6C;
     }
   }
   &:hover .icon-wrapper{
