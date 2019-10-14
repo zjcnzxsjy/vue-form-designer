@@ -3,6 +3,7 @@
     v-model="currentValue"
     :disabled="isDisabled"
     :size="size"
+    :texts="options.texts.split(',')"
     v-bind="options"
     :style="style">
   </el-rate>

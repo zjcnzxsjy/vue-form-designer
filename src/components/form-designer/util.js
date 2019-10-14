@@ -15,7 +15,7 @@ export function config2Schema(layout, formConfigData) {
         for (let [key1, value1] of Object.entries(value)) {
           obj[key][key1] = value1.value;
         }
-      } else {
+      } else if (key !== "children"){
         obj[key] = value;
       }
     }

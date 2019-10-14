@@ -1,6 +1,6 @@
 <template>
   <div class="checkbox-wrapper"
-    :class=" !options.vertical ?  'checkbox-align':'checkbox-vertical'">
+    :class=" !options.vertical ?  'checkbox-horizontal':'checkbox-vertical'">
     <el-checkbox
       class="checkAll"
       v-show="options.isShow"
@@ -10,7 +10,7 @@
       :disabled="isDisabled"
       :indeterminate="indeterminate"
       @click.prevent.native="handleCheckAll"
-      :class=" !options.vertical || options.isButton ?  'checkAll-align' : null">
+      :class=" !options.vertical || options.isButton ?  'checkAll-horizontal' : null">
       全选
     </el-checkbox>
     <div class="checkboxGroup">
@@ -26,6 +26,7 @@
           v-for="(child, index) in children"
           :key="index"
           :border="options.border"
+          :label="child.value"
           v-bind="child">
           <span>{{child.label}}</span>
         </el-checkbox>
@@ -41,6 +42,7 @@
         <el-checkbox-button
           v-for="(child, index) in children"
           :key="index"
+          :label="child.value"
           v-bind="child">
           <span>{{child.label}}</span>
         </el-checkbox-button>
@@ -121,7 +123,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.checkbox-align{
+.checkbox-horizontal{
   display: flex;
 }
 .checkbox-vertical{
@@ -133,23 +135,20 @@ export default {
   align-items: center;
   .checkboxGroup {
     display: flex;
-    min-height: 32px;
     align-items: center;
   }
   .checkAll {
     text-align: right;
     vertical-align: middle;
-    font-size: 12px;
     color: #495060;
     padding: 0 12px 0 0;
     box-sizing: border-box;
     overflow: hidden;
     white-space: nowrap;
     width: 60px;
-    line-height: 30px;
     display: inline-block;
   }
-  .checkAll-align{
+  .checkAll-horizontal{
     float: left;
   }
 }

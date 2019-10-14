@@ -8,9 +8,9 @@
       v-for="child in children"
       :key="child.uuid"
       :value="child.value"
+      :label="child.label"
       :disabled="child.disabled"
       :size="size">
-      {{child.label}}
     </el-option>
   </el-select>
 </template>

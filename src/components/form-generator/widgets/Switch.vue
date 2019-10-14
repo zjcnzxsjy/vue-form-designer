@@ -13,14 +13,17 @@ import mixins from '@/components/form-generator/mixins'
 export default {
   name: "PISwitch",
   props: {
-    value: [String, Boolean],
+    value: {
+      type: [String, Boolean],
+      default: false
+    },
     options: Object,
     prop: String
   },
   mixins: [mixins],
   data() {
     return {
-      currentValue: this.value
+      currentValue: this.value || false
     }
   }
 }

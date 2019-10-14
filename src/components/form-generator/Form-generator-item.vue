@@ -18,7 +18,7 @@
       <component 
       :is="widget.type"
       :options="widget.options"
-      :label="widget.label">
+      :label="widget.options.label">
     </component>
     </template>
     <template v-else>
@@ -27,7 +27,7 @@
         :value="formGenerator.model[widget.prop]"
         :prop="widget.prop"
         :options="widget.options"
-        :children="widget.children? widget.children : null">
+        :children="widget.dataSourceType === 'static' && widget.dataSource? JSON.parse(widget.dataSource) : null">
       </component>
     </template>
   </el-form-item>

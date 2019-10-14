@@ -70,7 +70,7 @@
     </div>
     <div class="edit-main">
       <!-- <div class="left-edit-main"></div> -->
-      <div class="right-edit-main" @click="handleWidgetClick('form', -1)">
+      <div class="right-edit-main" @click="handleWidgetClick('form', formId)">
         <grid-layout
             ref="gridLayout"
             :layout.sync="layout"
@@ -121,10 +121,11 @@
       </div>
       <div class="config-manager-container">
         <keep-alive>
-          <form-config v-if="currentIndex === -1" :data="formConfigData"></form-config>
+          <form-config v-if="currentIndex === formId" :data="formConfigData"></form-config>
           <form-item-config 
             v-else 
-            :data="configData">
+            :data="configData"
+            @getRemoteDataSource="handleGetRemoteDataSource">
           </form-item-config>
         </keep-alive>
       </div>
@@ -165,6 +166,7 @@ import formGenerator from "@/components/form-generator/Form-generator"
 import { config2Schema } from "./util"
 import vueAceEditor from "@/components/vue-ace-editor/Vue-ace-editor"
 import clipboard from '@/directives/clipboard/index.js' // use clipboard by v-directive
+import uuidv1 from "uuid/v1"
 
 export default {
   name: "formDesigner",
@@ -180,9 +182,15 @@ export default {
   directives: {
     clipboard
   },
+  props: {
+    data: {
+      type: Object,
+      default: () => {}
+    }
+  },
   provide() {
     return {
-      formDesigner: this
+      "formDesigner": this
     }
   },
   data() {
@@ -275,10 +283,11 @@ export default {
           ]
         },
       ]),
-      formConfigData: basicComponents.form,
-      configData: basicComponents.form,
-      layout: [],
-      currentIndex: -1,    //当前选中grid-item的index
+      formConfigData: this.data.formConfigData || basicComponents.form,
+      configData: this.data.formConfigData || basicComponents.form,
+      layout: this.data.layout || [],
+      formId: "",
+      currentIndex: "",    //当前选中grid-item的index
       showPreviewForm: false,
       schema: {},
       model: {},
@@ -303,6 +312,14 @@ export default {
   },
   created() {
     console.log(this.data)
+    if (this.data.formConfigData && !isEmpty(this.data.formConfigData)) {
+      this.formId = this.data.formConfigData.uid;
+      this.currentIndex = this.data.formConfigData.uid;
+    } else {
+      this.formId = uuidv1();
+      this.currentIndex = this.formId;
+      this.formConfigData.uid = this.formId;
+    }
   },
   mounted() {
     on(window, "resize", this.setGridlayoutW);
@@ -311,7 +328,8 @@ export default {
     handleComponentClick(widget) {
       const length = this.layout.length;
       this.configData = cloneDeep(basicComponents[widget]);
-      const unique = +new Date();
+      const unique = uuidv1();
+      this.configData.uid = unique;
       this.currentIndex = unique;
       this.layout.push(
         {
@@ -360,18 +378,19 @@ export default {
     },
     handleCopyWidget(configData) {
       const length = this.layout.length;
+      const unique = uuidv1();
       this.layout.push(
         {
           // "x": 0,"y": 2 * length,"w":this.setGridw(configData),"h":2,"i": length, widget: configData
-          "x": 0,"y": 2 * length,"w":configData.span.span,"h":2,"i": length, widget: configData
+          "x": 0,"y": 2 * length,"w":configData.span.span,"h":2,"i": unique, widget: configData
         }
       )
-      this.currentIndex = length;
+      this.currentIndex = unique;
     },
     handleRemoveWidget(i) {
       const findIndex = this.layout.findIndex(item => item.i === i);
       this.layout.splice(findIndex, 1);
-      this.currentIndex = -1;
+      this.currentIndex = this.formId;;
     },
     handleGenerateJSON() {
       this.schemaString = JSON.stringify(config2Schema(this.layout, this.formConfigData), null, 2);
@@ -379,6 +398,7 @@ export default {
     },
     handlePreviewForm() {
       this.schema = config2Schema(this.layout, this.formConfigData);
+      console.log(this.schema)
       this.model = {};
       this.showPreviewForm = true;
     },
@@ -386,11 +406,11 @@ export default {
       this[visible] = false;
     },
     handleCopy() {
-      this.$hMessage.success("Copy successfully");
+      this.$message.success("Copy successfully");
     },
     handleClear() {
       this.layout = [];
-      this.currentIndex = -1;
+          this.currentIndex = this.formId;
     },
     handleSaveForm() {
       //this.schema = config2Schema(this.layout, this.formConfigData);
@@ -403,6 +423,10 @@ export default {
       this.currentIndex = i;
       this.configData = this.layout.filter(item => item.i === i)[0].widget;
       this.configData.span.span = newW;
+    },
+    handleGetRemoteDataSource(data, apiDataSource, transferKey) {
+      console.log(data, apiDataSource, transferKey)
+      this.$emit("get-remote-dataSource", data, apiDataSource, transferKey);
     }
   },
   destroyed() {

@@ -22,6 +22,7 @@ export default {
       immediate: true,
       deep: true,
       handler(newVal, oldVal) {
+        console.log(newVal, oldVal)
         if (this.prop && !isEqual(newVal, oldVal)) {
           this.dispatch('formGeneratorItem', 'form.generator.change', [this.prop, newVal]);
         }

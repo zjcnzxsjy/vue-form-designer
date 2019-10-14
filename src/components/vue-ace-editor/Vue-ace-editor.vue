@@ -5,7 +5,7 @@
 // require(['emmet/emmet'],function (data) {
 //     window.emmet = data.emmet;
 // });
-import Ace from "brace"
+import Ace from "simple-brace"
 
 export default {
   name: "vueAceEditor",
@@ -241,7 +241,7 @@ export default {
     }
   },
   mounted() {
-    require('brace/ext/emmet');
+    require('simple-brace/ext/emmet');
     const editor = this.editor = Ace.edit(this.$el);
     
     editor.$blockScrolling = Infinity;
@@ -288,16 +288,16 @@ export default {
       
     },
     setMode() {
-      require(`brace/mode/${this.lang}`);
+      require(`simple-brace/mode/${this.lang}`);
       this.editor.getSession().setMode(`ace/mode/${this.lang}`);
     },
     setTheme() {
-      require(`brace/theme/${this.theme}`);
+      require(`simple-brace/theme/${this.theme}`);
       this.editor.setTheme(`ace/theme/${this.theme}`);
     },
     setKeyboardHandler() {
       if (this.keyboardHandler === "vim" || this.keyboardHandler === "emacs") {
-        require(`brace/keybinding/${this.keyboardHandler}`);
+        require(`simple-brace/keybinding/${this.keyboardHandler}`);
         this.editor.setKeyboardHandler(`ace/keyboard/${this.keyboardHandler}`)
       }
     },

@@ -29,7 +29,7 @@
       <component 
         :is="type" 
         :options="options"
-        :label="config.label">
+        :label="options.label">
       </component>
     </div>
   </div>

@@ -175,11 +175,17 @@
         <div class="tab-panel-body">
           <div v-if="!showGridButtonItems.includes(data.type)" class="setting-panel-content">
             <div class="setting-controller">
-              <div class="setting-field" 
-                style="border-bottom: 1px solid #2b2f3a;border-top: 1px solid #2b2f3a;">
+              <div class="setting-field">
                 <span class="field-name data-label-name">字段</span>
                 <div class="field-container" style="width:220px;">
                   <el-input size="mini" v-model="data.prop"></el-input>
+                </div>
+              </div>
+              <div class="setting-field" 
+                style="border-bottom: 1px solid #2b2f3a;">
+                <span class="field-name data-label-name">默认值</span>
+                <div class="field-container" style="width:220px;">
+                  <el-input size="mini" v-model="data.value"></el-input>
                 </div>
               </div>
               <div v-if="showDataSource.includes(data.type)">
@@ -507,27 +513,30 @@ export default {
           this.data.dataSource = this.staticDataSource;
           data = JSON.parse(this.staticDataSource);
         } catch(err) {
-          this.$hMessage.error({
+          this.$message.error({
             content: '数据格式错误，请重新填写！'
           });
         }
-      } else {
-        try {
-          this.data.dataSource = this.apiDataSource;
-          data = (await this.$http.get(this.apiDataSource)).data.res;
-          console.log(data)
-          if (this.transferKey.on) {
-            data.forEach(item => {
-              item.label = item[this.transferKey.label];
-              item.value = item[tjis.transferKey.value];
-            })
-          }
-        } catch(err) {
-          console.log(err)
-          this.$hMessage.error({
-            content: '请求失败'
-          });
-        }
+      } else if (this.dataSourceType === "api"){
+        this.data.dataSource = this.apiDataSource;
+        this.$emit("getRemoteDataSource", this.data, this.apiDataSource, this.transferKey);
+        // try {
+        //   this.data.dataSource = this.apiDataSource;
+        //   this.$emit("getRemoteDataSource", this.apiDataSource, this.transferKey);
+        //   data = (await this.$http.get(this.apiDataSource)).data.res;
+        //   console.log(data)
+        //   if (this.transferKey.on) {
+        //     data.forEach(item => {
+        //       item.label = item[this.transferKey.label];
+        //       item.value = item[this.transferKey.value];
+        //     })
+        //   }
+        // } catch(err) {
+        //   console.log(err)
+        //   this.$message.error({
+        //     content: '请求失败'
+        //   });
+        // }
 
       }
       this.data.children = data;

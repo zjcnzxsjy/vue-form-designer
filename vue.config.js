@@ -3,12 +3,24 @@ function resolve(dir) {
   return path.join(__dirname, dir)
 }
 
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+
 module.exports = {
   publicPath: "./",
   runtimeCompiler: true,
   devServer: {
     port: 8091,
   },
+  lintOnSave: false,
+  // configureWebpack: config => {
+  //   if (process.env.NODE_ENV === 'production') {
+  //     return {
+  //       plugins: [
+  //         new BundleAnalyzerPlugin()
+  //       ]
+  //     }
+  //   }
+  // },
   chainWebpack: config => {
     config.module
       .rule('svg')

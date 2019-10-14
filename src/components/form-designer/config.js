@@ -15,6 +15,7 @@ export const basicComponents = {
 		"type": "PIText",
 		"label": "单行文本",
 		"labelWidth": "",
+		"value": "",
 		"prop": "",
 		"span": {
 			"span": 24,
@@ -111,6 +112,7 @@ export const basicComponents = {
 		"type": "PITextarea",
 		"label": "多行文本",
 		"labelWidth": "",
+		"value": "",
 		"prop": "",
 		"span": {
 			"span": 24,
@@ -212,6 +214,7 @@ export const basicComponents = {
 		"type": "PIInputNumber",
 		"label": "计数器",
 		"labelWidth": "",
+		"value": 0,
 		"prop": "",
 		"span": {
 			"span": 24,
@@ -285,6 +288,7 @@ export const basicComponents = {
 		"type": "PISelect",
 		"label": "下拉框",
 		"labelWidth": "",
+		"value": "",
 		"prop": "",
 		"span": {
 			"span": 24,
@@ -384,6 +388,7 @@ export const basicComponents = {
 		"type": "PIRadio",
 		"label": "单选框",
 		"labelWidth": "",
+		"value": "",
 		"prop": "",
 		"span": {
 			"span": 24,
@@ -448,6 +453,7 @@ export const basicComponents = {
 		"type": "PICheckbox",
 		"label": "复选框",
 		"labelWidth": "",
+		"value": "",
 		"prop": "",
 		"span": {
 			"span": 24,
@@ -532,6 +538,7 @@ export const basicComponents = {
 		"type": "PITimePicker",
 		"label": "时间选择框",
 		"labelWidth": "",
+		"value": "",
 		"prop": "",
 		"span": {
 			"span": 24,
@@ -656,6 +663,7 @@ export const basicComponents = {
 		"type": "PITimeSelect",
 		"label": "时间选择框",
 		"labelWidth": "",
+		"value": "",
 		"prop": "",
 		"span": {
 			"span": 24,
@@ -797,6 +805,7 @@ export const basicComponents = {
 		"type": "PIDatePicker",
 		"label": "日期选择框",
 		"labelWidth": "",
+		"value": "",
 		"prop": "",
 		"span": {
 			"span": 24,
@@ -958,6 +967,7 @@ export const basicComponents = {
 		"type": "PIRate",
 		"label": "评分",
 		"labelWidth": "",
+		"value": 0,
 		"prop": "",
 		"span": {
 			"span": 24,
@@ -1031,6 +1041,7 @@ export const basicComponents = {
 		"type": "PICascader",
 		"label": "级联",
 		"labelWidth": "",
+		"value": "",
 		"prop": "",
 		"span": {
 			"span": 24,
@@ -1109,6 +1120,7 @@ export const basicComponents = {
 		"type": "PISwitch",
 		"label": "开关",
 		"labelWidth": "",
+		"value": false,
 		"prop": "",
 		"span": {
 			"span": 24,
@@ -1162,6 +1174,7 @@ export const basicComponents = {
 		"type": "PISlider",
 		"label": "滑块",
 		"labelWidth": "",
+		"value": 0,
 		"prop": "",
 		"span": {
 			"span": 24,
@@ -1249,7 +1262,6 @@ export const basicComponents = {
 	},
 	"searchBtn": {
 		"type": "PISearchButton",
-		"label": "查询",
 		"span": {
 			"span": 4,
 			"lg": 4,
@@ -1258,6 +1270,11 @@ export const basicComponents = {
 			"xs": 4
 		},
 		"options": {
+			"label": {
+				"label": "文本",
+				"value": "查询",
+				"type": "input"
+			},
 			"type": {
 				"label": "类型",
 				"value": "ghost",
@@ -1328,7 +1345,6 @@ export const basicComponents = {
 	},
 	"resetBtn": {
 		"type": "PIResetButton",
-		"label": "重置",
 		"span": {
 			"span": 4,
 			"lg": 4,
@@ -1337,6 +1353,11 @@ export const basicComponents = {
 			"xs": 4
 		},
 		"options": {
+			"label": {
+				"label": "文本",
+				"value": "重置",
+				"type": "input"
+			},
 			"type": {
 				"label": "类型",
 				"value": "ghost",
@@ -1407,7 +1428,6 @@ export const basicComponents = {
 	},
 	"customBtn": {
 		"type": "PICustomButton",
-		"label": "自定义",
 		"span": {
 			"span": 4,
 			"lg": 4,
@@ -1416,6 +1436,11 @@ export const basicComponents = {
 			"xs": 4
 		},
 		"options": {
+			"label": {
+				"label": "文本",
+				"value": "自定义",
+				"type": "input"
+			},
 			"type": {
 				"label": "类型",
 				"value": "ghost",
