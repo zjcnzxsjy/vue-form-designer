@@ -2,17 +2,29 @@
 <div :class="options.vertical? 'radio-wrapper':null">
   <el-radio-group
     v-model="currentValue"
-    :type="options.type ? 'button' : null"
     :disabled="isDisabled"
     :size="size"
     v-bind="options">
-    <el-radio
-      v-for="(child, index) in children"
+    <template v-if="options.isButton">
+      <el-radio-button
+       v-for="(child, index) in children"
       :key="index"
       :disabled ="child.disabled"
-      :border="options.border"
-      v-bind="child">
-    </el-radio>
+      :label="child.value">
+      {{child.label}}
+    </el-radio-button>
+    </template>
+    <template v-else>
+      <el-radio
+        v-for="(child, index) in children"
+        :key="index"
+        :label="child.value"
+        :disabled ="child.disabled"
+        :border="options.border"
+        v-bind="child">
+        {{child.label}}
+      </el-radio>
+    </template>
   </el-radio-group>
   </div>
 </template>

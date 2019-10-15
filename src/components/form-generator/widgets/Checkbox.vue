@@ -1,53 +1,49 @@
 <template>
-  <div class="checkbox-wrapper"
-    :class=" !options.vertical ?  'checkbox-horizontal':'checkbox-vertical'">
-    <el-checkbox
-      class="checkAll"
-      v-show="options.isShow"
+  <div class="checkbox-wrapper">
+    <div class="el-checkbox-group checkbox-all">
+      <el-checkbox
+        v-show="options.isShow"
+        v-bind="options"
+        :size="size"
+        :value="checkAll"
+        :disabled="isDisabled"
+        :indeterminate="indeterminate"
+        @click.prevent.native="handleCheckAll">
+        全选
+      </el-checkbox>
+    </div>
+    <el-checkbox-group
+      v-if="!options.isButton"
+      @change="checkAllGroupChange "
+      :disabled="isDisabled"
+      v-bind="options"
+      v-model="currentValue"
+      :size="size">
+      <el-checkbox
+        v-for="(child, index) in children"
+        :key="index"
+        :border="options.border"
+        :label="child.value"
+        v-bind="child">
+        <span>{{child.label}}</span>
+      </el-checkbox>
+    </el-checkbox-group>
+
+    <el-checkbox-group
+      v-else
+      v-model="currentValue"
+      @change="checkAllGroupChange"
       v-bind="options"
       :size="size"
-      :value="checkAll"
-      :disabled="isDisabled"
-      :indeterminate="indeterminate"
-      @click.prevent.native="handleCheckAll"
-      :class=" !options.vertical || options.isButton ?  'checkAll-horizontal' : null">
-      全选
-    </el-checkbox>
-    <div class="checkboxGroup">
-      <el-checkbox-group
-        v-if="!options.isButton"
-        @change="checkAllGroupChange "
-        :disabled="isDisabled"
-        v-bind="options"
-        v-model="currentValue"
-        :size="size"
-        :class=" options.vertical && options.isShow ?  'checkboxGroup-vertical':null">
-        <el-checkbox
-          v-for="(child, index) in children"
-          :key="index"
-          :border="options.border"
-          :label="child.value"
-          v-bind="child">
-          <span>{{child.label}}</span>
-        </el-checkbox>
-      </el-checkbox-group>
-
-      <el-checkbox-group
-        v-else
-        v-model="currentValue"
-        @change="checkAllGroupChange"
-        v-bind="options"
-        :size="size"
-        class="checkboxGroup">
-        <el-checkbox-button
-          v-for="(child, index) in children"
-          :key="index"
-          :label="child.value"
-          v-bind="child">
-          <span>{{child.label}}</span>
-        </el-checkbox-button>
-      </el-checkbox-group>
-    </div>
+      class="checkboxGroup">
+      <el-checkbox-button
+        v-for="(child, index) in children"
+        :key="index"
+        :label="child.value"
+        v-bind="child">
+        <span>{{child.label}}</span>
+      </el-checkbox-button>
+    </el-checkbox-group>
   </div>
 </template>
 <script>
@@ -123,33 +119,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.checkbox-horizontal{
-  display: flex;
-}
-.checkbox-vertical{
-  height:60px;
-  overflow: auto;
-}
 .checkbox-wrapper {
-  width: 100%;
-  align-items: center;
-  .checkboxGroup {
-    display: flex;
-    align-items: center;
-  }
-  .checkAll {
-    text-align: right;
-    vertical-align: middle;
-    color: #495060;
-    padding: 0 12px 0 0;
-    box-sizing: border-box;
-    overflow: hidden;
-    white-space: nowrap;
-    width: 60px;
-    display: inline-block;
-  }
-  .checkAll-horizontal{
-    float: left;
+  display: flex;
+  .checkbox-all {
+    margin-right: 15px;
   }
 }
 </style>

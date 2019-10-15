@@ -26,9 +26,8 @@ export default {
       const ret = {
         start: this.options.start,
         end: this.options.end,
-        start: this.options.step,
-        start: this.options.minTime
-        
+        step: this.options.step,
+        minTime: this.options.minTime
       };
       if (this.options.maxTime) {
         ret.maxTime = this.options.maxTime;

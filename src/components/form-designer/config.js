@@ -419,7 +419,7 @@ export const basicComponents = {
 					"clearable": true
 				}
 			},
-			"type": {
+			"isButton": {
 				"label": "button样式",
 				"value": false,
 				"type": "checkbox"
@@ -515,12 +515,12 @@ export const basicComponents = {
 				"type": "input-number"
 			},
 			"textColor": {
-				"label": "按钮形式的Radio激活时的文本颜色",
+				"label": "按钮形式的Checkbox 激活时的文本颜色",
 				"value": "#ffffff",
 				"type": "input"
 			},
 			"fill": {
-				"label": "按钮形式的Radio激活时的填充色和边框色",
+				"label": "按钮形式的Checkbox 激活时的填充色和边框色",
 				"value": "#409EFF",
 				"type": "input"
 			},
