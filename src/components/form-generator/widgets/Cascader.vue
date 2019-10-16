@@ -4,6 +4,7 @@
     :options="children"
     :size="size"
     :disabled="isDisabled"
+    :props="props"
     v-bind="options"
     :style="style">
   </el-cascader>
@@ -22,6 +23,12 @@ export default {
       default: () => []
     }
   },
-  mixins: [mixins]
+  mixins: [mixins],
+  computed: {
+    props() {
+      const { expandTrigger, multiple, checkStrictly, emitPath } = this.options;
+      return { expandTrigger, multiple, checkStrictly, emitPath };
+    }
+  }
 }
 </script>

@@ -1096,6 +1096,11 @@ export const basicComponents = {
 				"value": false,
 				"type": "checkbox"
 			},
+			"multiple": {
+				"label": "多选",
+				"value": false,
+				"type": "checkbox"
+			},
 			"collapse-tags": {
 				"label": "多选模式下是否折叠Tag",
 				"value": false,
@@ -1105,6 +1110,31 @@ export const basicComponents = {
 				"label": "选项分隔符",
 				"value": "/",
 				"type": "input"
+			},
+			"expandTrigger": {
+				"label": "次级菜单的展开方式",
+				"value": "click",
+				"type": "select",
+				"children": [
+					{
+						"label": "click",
+						"value": "click"
+					},
+					{
+						"label": "hover",
+						"value": "hover"
+					}
+				]
+			},
+			"checkStrictly": {
+				"label": "严格的遵守父子节点不互相关联",
+				"value": false,
+				"type": "checkbox"
+			},
+			"emitPath": {
+				"label": "返回选中节点所在各级菜单的值所组成的数组",
+				"value": false,
+				"type": "checkbox"
 			},
 			"width": {
 				"label": "宽度",
@@ -1120,7 +1150,7 @@ export const basicComponents = {
 		"type": "PISwitch",
 		"label": "开关",
 		"labelWidth": "",
-		"value": false,
+		"value": "false",
 		"prop": "",
 		"span": {
 			"span": 24,
@@ -1252,12 +1282,13 @@ export const basicComponents = {
 				"label": "范围选择",
 				"value": false,
 				"type": "checkbox"
-			},
-			"vertical": {
-				"label": "竖向模式",
-				"value": false,
-				"type": "checkbox"
 			}
+			// 表单不支持竖向
+			// "vertical": {
+			// 	"label": "竖向模式",
+			// 	"value": false,
+			// 	"type": "checkbox"
+			// }
 		}
 	},
 	"searchBtn": {

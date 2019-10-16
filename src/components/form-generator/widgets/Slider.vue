@@ -20,7 +20,7 @@ export default {
   mixins: [mixins],
   data() {
     return {
-      currentValue: this.value || 0
+      currentValue: this.value? (typeof(this.value) === "string"? Number(this.value) : this.value) : 0
     }
   },
   watch: {

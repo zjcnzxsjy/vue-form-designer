@@ -55,6 +55,7 @@ export default {
     const yAxias = new Set();
     this.schema.widgets && this.schema.widgets.forEach(item => {
       yAxias.add(item.span.y);
+      console.log(item.value)
       if (item.prop && !(item.prop in this.model)) {
         if (this.valueTypeArray.includes(item.type)) {
           this.$set(this.model, item.prop, item.value!== ""? item.value.split(',') : []);
