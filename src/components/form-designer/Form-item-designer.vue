@@ -22,7 +22,7 @@
       <component 
         :is="type" 
         :options="options"
-        :children="config.children? config.children : null">
+        :children="config.dataSource? JSON.parse(config.dataSource) : null">
       </component>
     </div>
     <div class="grid-item_button" v-if="showGridButtonItems.includes(config.type)">
