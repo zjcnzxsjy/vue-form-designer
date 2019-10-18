@@ -31,8 +31,7 @@ export default {
   },
   computed: {
     size() {
-      console.log(this)
-      return this.options.size || this.formDesigner.formConfigData.size;
+      return this.options.size || this.formDesigner.formConfigData.size || null;
     },
     isDisabled() {
       return this.options.disabled || this.formDesigner.formConfigData.disabled

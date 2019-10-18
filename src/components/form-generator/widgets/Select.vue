@@ -2,6 +2,7 @@
   <el-select
     v-model="currentValue"
     :disabled="isDisabled"
+    :size="size"
     v-bind="options"
     :style="style">
     <el-option
@@ -9,8 +10,7 @@
       :key="child.uuid"
       :value="child.value"
       :label="child.label"
-      :disabled="child.disabled"
-      :size="size">
+      :disabled="child.disabled">
     </el-option>
   </el-select>
 </template>
