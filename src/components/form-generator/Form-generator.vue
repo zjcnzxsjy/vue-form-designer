@@ -58,7 +58,7 @@ export default {
       console.log(item.value)
       if (item.prop && !(item.prop in this.model)) {
         if (this.valueTypeArray.includes(item.type)) {
-          this.$set(this.model, item.prop, item.value !== ""? item.value.split(',') : []);
+          this.$set(this.model, item.prop, Array.isArray(item.value)? item.value : []);
         } else {
           this.$set(this.model, item.prop, item.value !== undefined? item.value : "");
         }
