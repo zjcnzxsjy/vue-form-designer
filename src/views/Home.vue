@@ -1,22 +1,22 @@
 <template>
   <div class="form-designer-container">
-    <form-desinger
-      :data="data"
-      @get-remote-dataSource="handleGetRemoteDataSource">
+    <form-desinger>
     </form-desinger>
   </div>
 </template>
 <script>
 import formDesinger from "@/components/form-designer/Form-designer"
+import axios from "axios"
 export default {
   name: "formDesignerDemo",
   components: {
     formDesinger
   },
-  data() {
-    return {
-      data: {}
-    }
+  created() {
+    axios.get('/mock-data/radioMockData')
+    .then(res => {
+      console.log(res)
+    })
   },
   methods: {
     handleGetRemoteDataSource(data, apiDataSource, transferKey) {

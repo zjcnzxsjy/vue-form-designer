@@ -10,7 +10,7 @@
 </template>
 <script>
 import mixins from '@/components/form-generator/mixins'
-import { isEqual } from "lodash"
+import { isEqual } from "lodash-es"
 
 export default {
   name: "PIDatePicker",

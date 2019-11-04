@@ -124,8 +124,7 @@
           <form-config v-if="currentIndex === formId" :data="formConfigData"></form-config>
           <form-item-config 
             v-else 
-            :data="configData"
-            @getRemoteDataSource="handleGetRemoteDataSource">
+            :data="configData">
           </form-item-config>
         </keep-alive>
       </div>
@@ -157,7 +156,7 @@
 <script>
 import VueGridLayout from 'vue-grid-layout'
 import { basicComponents } from "./config"
-import { cloneDeep } from 'lodash'
+import { cloneDeep, has } from 'lodash-es'
 import formConfig from './Form-config';
 import formItemConfig from './Form-item-config';
 import formItemDesigner from './Form-item-designer';
@@ -170,6 +169,7 @@ import uuidv1 from "uuid/v1"
 
 export default {
   name: "formDesigner",
+  componentName: 'formDesigner',
   components: {
     gridLayout: VueGridLayout.GridLayout,
     gridItem: VueGridLayout.GridItem,
@@ -183,10 +183,7 @@ export default {
     clipboard
   },
   props: {
-    data: {
-      type: Object,
-      default: () => {}
-    }
+    data: Object
   },
   provide() {
     return {
@@ -283,16 +280,17 @@ export default {
           ]
         },
       ]),
-      formConfigData: this.data.formConfigData || basicComponents.form,
-      configData: this.data.formConfigData || basicComponents.form,
-      layout: this.data.layout || [],
+      formConfigData: (this.data || {}).formConfigData || basicComponents.form,
+      configData: (this.data || {}).formConfigData || basicComponents.form,
+      layout: (this.data || {}).layout || [],
       formId: "",
       currentIndex: "",    //当前选中grid-item的index
       showPreviewForm: false,
       schema: {},
       model: {},
       showJSON: false,
-      schemaString: ""
+      schemaString: "",
+      designerModel: {}  //设计器表单model
     }
   },
   watch: {
@@ -312,7 +310,7 @@ export default {
   },
   created() {
     console.log(this.data)
-    if (this.data.formConfigData && !isEmpty(this.data.formConfigData)) {
+    if (has(this.data, "formConfigData") && !isEmpty(this.data.formConfigData)) {
       this.formId = this.data.formConfigData.uid;
       this.currentIndex = this.data.formConfigData.uid;
     } else {
@@ -323,6 +321,8 @@ export default {
   },
   mounted() {
     on(window, "resize", this.setGridlayoutW);
+    //监听默认值的改变
+    this.$on("form.model.change", this.formModelChange);
   },
   methods: {
     handleComponentClick(widget) {
@@ -399,7 +399,7 @@ export default {
     handlePreviewForm() {
       this.schema = config2Schema(this.layout, this.formConfigData);
       console.log(this.schema)
-      this.model = {};
+      this.model = cloneDeep(this.designerModel);
       this.showPreviewForm = true;
     },
     handleClose(visible) {
@@ -410,7 +410,7 @@ export default {
     },
     handleClear() {
       this.layout = [];
-          this.currentIndex = this.formId;
+      this.currentIndex = this.formId;
     },
     handleSaveForm() {
       //this.schema = config2Schema(this.layout, this.formConfigData);
@@ -424,10 +424,13 @@ export default {
       this.configData = this.layout.filter(item => item.i === i)[0].widget;
       this.configData.span.span = newW;
     },
-    handleGetRemoteDataSource(data, apiDataSource, transferKey) {
-      console.log(data, apiDataSource, transferKey)
-      this.$emit("get-remote-dataSource", data, apiDataSource, transferKey);
-    }
+    formModelChange(prop, value) {
+      if (prop in this.designerModel) {
+        this.designerModel[prop] = value;
+      } else {
+        this.$set(this.designerModel, prop, value);
+      }
+    },
   },
   destroyed() {
     off(window, "resize", this.setGridlayoutW);

@@ -1,5 +1,5 @@
 import Emitter from 'element-ui/src/mixins/emitter'
-import { isEqual } from "lodash"
+import { isEqual } from "lodash-es"
 export default {
   mixins: [Emitter],
   data() {
@@ -24,7 +24,12 @@ export default {
       handler(newVal, oldVal) {
         console.log(newVal, oldVal)
         if (this.prop && !isEqual(newVal, oldVal)) {
-          this.dispatch('formGeneratorItem', 'form.generator.change', [this.prop, newVal]);
+          //预览时不触发回调
+          if (!this.formDesigner.showPreviewForm) {
+            this.dispatch('formDesigner', 'form.model.change', [this.prop, newVal]);
+          } else {
+            this.dispatch('formGeneratorItem', 'form.generator.change', [this.prop, newVal]);
+          }
         }
       }
     }

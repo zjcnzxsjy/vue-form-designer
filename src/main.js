@@ -4,12 +4,15 @@ import router from './router'
 import store from './store'
 import ElementUI from "element-ui"
 import svgIcon from "@/components/svg-icon/SvgIcon"
+import './mock'
+import axios from "axios"
 
 import 'element-ui/lib/theme-chalk/index.css';
 
 Vue.config.productionTip = false;
 Vue.use(ElementUI);
 
+Vue.prototype.$http = axios;
 /**
  * @description 加载svg
 */

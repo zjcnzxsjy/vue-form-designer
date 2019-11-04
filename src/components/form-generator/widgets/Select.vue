@@ -23,7 +23,7 @@ export default {
     value: [String, Array, Number],
     options: Object,
     prop: String,
-    children: Array
+    children: Array,
   },
   mixins: [mixins],
   watch: {

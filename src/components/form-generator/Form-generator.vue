@@ -58,9 +58,9 @@ export default {
       console.log(item.value)
       if (item.prop && !(item.prop in this.model)) {
         if (this.valueTypeArray.includes(item.type)) {
-          this.$set(this.model, item.prop, item.value!== ""? item.value.split(',') : []);
+          this.$set(this.model, item.prop, item.value !== ""? item.value.split(',') : []);
         } else {
-          this.$set(this.model, item.prop, item.value!== undefined? item.value : "");
+          this.$set(this.model, item.prop, item.value !== undefined? item.value : "");
         }
       }
     })
@@ -79,6 +79,9 @@ export default {
     },
     handleClick(params) {
       this.$emit("on-button-click", params);
+    },
+    reset() {
+      this.$refs.formGenerator.resetFields();
     }
   }
 }

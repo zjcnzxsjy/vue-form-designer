@@ -18,24 +18,33 @@
       v-if="!showGridButtonItems.includes(config.type)" 
       :style="labelStyle">{{label}}
     </label>
-    <div class="grid-item_content" v-if="!showGridButtonItems.includes(config.type)" :style="contentStyle">
+    <div class="grid-item_content" v-if="remoteDataSource.includes(config.type)" :style="contentStyle">
       <component 
         :is="type" 
         :options="options"
-        :children="config.dataSource? JSON.parse(config.dataSource) : null">
+        :prop="config.prop"
+        :children="config.children.length > 0? config.children : null">
       </component>
     </div>
-    <div class="grid-item_button" v-if="showGridButtonItems.includes(config.type)">
+    <div class="grid-item_button" v-else-if="showGridButtonItems.includes(config.type)">
       <component 
         :is="type" 
         :options="options"
+        :prop="config.prop"
         :label="options.label">
+      </component>
+    </div>
+    <div class="grid-item_content" v-else>
+      <component 
+        :is="type" 
+        :prop="config.prop"
+        :options="options">
       </component>
     </div>
   </div>
 </template>
 <script>
-import { cloneDeep } from 'lodash'
+import { cloneDeep } from 'lodash-es'
 import {registerModules} from '@/utils/Register';
 
 let modules = require.context('../form-generator/widgets', false, /\.vue$/);
@@ -47,6 +56,7 @@ for(let key in modules) {
 }
 export default {
   name: "formItemDesigner",
+  componentName: "formItemDesigner",
   components: {
     ...formComponents
   },
@@ -59,7 +69,7 @@ export default {
     config: Object
   },
   watch: {
-    config: {
+    "config": {
       deep: true,
       handler(val) {
         console.log(val)
@@ -95,8 +105,12 @@ export default {
   }, 
   data() {
     return {
-      showGridButtonItems: Object.freeze(["PISearchButton", "PIResetButton", "PICustomButton"])
+      showGridButtonItems: Object.freeze(["PISearchButton", "PIResetButton", "PICustomButton"]),
+      remoteDataSource: Object.freeze(["PISelect", "PICheckbox", "PIRadio", "PICascader"])
     }
+  },
+  created() {
+    this.getChildren();
   },
   methods: {
     handleCopy() {
@@ -104,6 +118,18 @@ export default {
     },
     handleRemove() {
       this.$emit("remove-widget", this.i, cloneDeep(this.config));
+    },
+    getChildren() {
+      if (this.remoteDataSource.includes(this.config.type) && this.config.children.length === 0 && this.config.dataSource) {
+        if (this.config.dataSourceType === "static") {
+          this.config.children = JSON.parse(this.config.dataSource);
+        } else if (this.config.dataSourceType === "api") {
+          this.$http.get(this.config.dataSource)
+          .then(res => {
+            this.config.children = res.data.result_data;
+          });
+        }
+      }
     }
   }
 }

@@ -175,19 +175,36 @@
         <div class="tab-panel-body">
           <div v-if="!showGridButtonItems.includes(data.type)" class="setting-panel-content">
             <div class="setting-controller">
-              <div class="setting-field">
+              <div class="setting-field"
+                style="border-bottom: 1px solid #2b2f3a;">
                 <span class="field-name data-label-name">字段</span>
                 <div class="field-container" style="width:220px;">
                   <el-input size="mini" v-model="data.prop"></el-input>
                 </div>
               </div>
-              <div class="setting-field" 
-                style="border-bottom: 1px solid #2b2f3a;">
+              <!-- <div class="setting-field">
                 <span class="field-name data-label-name">默认值</span>
                 <div class="field-container" style="width:220px;">
                   <el-input size="mini" v-model="data.value"></el-input>
                 </div>
               </div>
+              <div class="setting-field" 
+                style="border-bottom: 1px solid #2b2f3a;">
+                <span class="field-name data-label-name">值类型</span>
+                <div class="field-container" style="width:220px;">
+                  <el-select 
+                    size="mini" 
+                    v-model="data.valueType.value"
+                    popper-class="select-down">
+                    <el-option 
+                      v-for="option in data.valueType.children" 
+                      :key="option.value" 
+                      :value="option.value"
+                      :label="option.label">
+                    </el-option>
+                  </el-select>
+                </div>
+              </div> -->
               <div v-if="showDataSource.includes(data.type)">
                 <div class="setting-field">
                   <span class="field-name data-label-name">数据源类型</span>
@@ -519,24 +536,24 @@ export default {
         }
       } else if (this.dataSourceType === "api"){
         this.data.dataSource = this.apiDataSource;
-        this.$emit("getRemoteDataSource", this.data, this.apiDataSource, this.transferKey);
-        // try {
-        //   this.data.dataSource = this.apiDataSource;
-        //   this.$emit("getRemoteDataSource", this.apiDataSource, this.transferKey);
-        //   data = (await this.$http.get(this.apiDataSource)).data.res;
-        //   console.log(data)
-        //   if (this.transferKey.on) {
-        //     data.forEach(item => {
-        //       item.label = item[this.transferKey.label];
-        //       item.value = item[this.transferKey.value];
-        //     })
-        //   }
-        // } catch(err) {
-        //   console.log(err)
-        //   this.$message.error({
-        //     content: '请求失败'
-        //   });
-        // }
+        //this.$emit("getRemoteDataSource", this.data, this.apiDataSource, this.transferKey);
+        try {
+          this.data.dataSource = this.apiDataSource;
+          this.$emit("getRemoteDataSource", this.apiDataSource, this.transferKey);
+          data = (await this.$http.get(this.apiDataSource)).data.result_data;
+          console.log(data)
+          if (this.transferKey.on) {
+            data.forEach(item => {
+              item.label = item[this.transferKey.label];
+              item.value = item[this.transferKey.value];
+            })
+          }
+        } catch(err) {
+          console.log(err)
+          this.$message.error({
+            content: '请求失败'
+          });
+        }
 
       }
       this.data.children = data;
@@ -741,10 +758,9 @@ export default {
               .editor-wrapper { 
                 height: 260px;
                 position: relative;
-                padding-right: 20px;
                 .editor-action {
                   position: absolute;
-                  right: 20px;
+                  right: 10px;
                   bottom: 8px;
                   text-align: center;
                   width: 40px;

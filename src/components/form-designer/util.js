@@ -1,4 +1,4 @@
-import { cloneDeep } from 'lodash'
+import { cloneDeep } from 'lodash-es'
 
 //转换formGenerator组件的schema
 export function config2Schema(layout, formConfigData) {
@@ -15,7 +15,7 @@ export function config2Schema(layout, formConfigData) {
         for (let [key1, value1] of Object.entries(value)) {
           obj[key][key1] = value1.value;
         }
-      } else if (key !== "children"){
+      } else if (key !== "dataSourceType" && key !== "dataSource"){
         obj[key] = value;
       }
     }

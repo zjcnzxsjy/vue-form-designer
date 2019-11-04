@@ -15,7 +15,6 @@ export const basicComponents = {
 		"type": "PIText",
 		"label": "单行文本",
 		"labelWidth": "",
-		"value": "",
 		"prop": "",
 		"span": {
 			"span": 24,
@@ -112,7 +111,6 @@ export const basicComponents = {
 		"type": "PITextarea",
 		"label": "多行文本",
 		"labelWidth": "",
-		"value": "",
 		"prop": "",
 		"span": {
 			"span": 24,
@@ -214,7 +212,6 @@ export const basicComponents = {
 		"type": "PIInputNumber",
 		"label": "计数器",
 		"labelWidth": "",
-		"value": 0,
 		"prop": "",
 		"span": {
 			"span": 24,
@@ -288,7 +285,6 @@ export const basicComponents = {
 		"type": "PISelect",
 		"label": "下拉框",
 		"labelWidth": "",
-		"value": "",
 		"prop": "",
 		"span": {
 			"span": 24,
@@ -399,13 +395,12 @@ export const basicComponents = {
 				label: '北京烤鸭'
 			}
 		], null, 2),
-		//"children": []
+		"children": []
 	},
 	"radio": {
 		"type": "PIRadio",
 		"label": "单选框",
 		"labelWidth": "",
-		"value": "",
 		"prop": "",
 		"span": {
 			"span": 24,
@@ -462,24 +457,24 @@ export const basicComponents = {
 				"type": "input"
 			}
 		},
-		"dataSourceType": "static",
-		"dataSource": JSON.stringify([
-			{
-					"label": "备选项1",
-					"value": "option1"
-			},
-			{
-					"label": "备选项1",
-					"value": "option2"
-			}
-		], null ,2),
-		//"children": []
+		"dataSourceType": "api",
+		// "dataSource": JSON.stringify([
+		// 	{
+		// 			"label": "备选项1",
+		// 			"value": "option1"
+		// 	},
+		// 	{
+		// 			"label": "备选项1",
+		// 			"value": "option2"
+		// 	}
+		// ], null ,2),
+		"dataSource": "/mock-data/radioMockData",
+		"children": []
 	},
 	"checkbox": {
 		"type": "PICheckbox",
 		"label": "复选框",
 		"labelWidth": "",
-		"value": "",
 		"prop": "",
 		"span": {
 			"span": 24,
@@ -571,13 +566,12 @@ export const basicComponents = {
 				"value": "C"
 			}
 		], null, 2),
-		//"children": []
+		"children": []
 	},
 	"timePicker": {
 		"type": "PITimePicker",
 		"label": "时间选择框",
 		"labelWidth": "",
-		"value": "",
 		"prop": "",
 		"span": {
 			"span": 24,
@@ -702,7 +696,6 @@ export const basicComponents = {
 		"type": "PITimeSelect",
 		"label": "时间选择框",
 		"labelWidth": "",
-		"value": "",
 		"prop": "",
 		"span": {
 			"span": 24,
@@ -844,7 +837,6 @@ export const basicComponents = {
 		"type": "PIDatePicker",
 		"label": "日期选择框",
 		"labelWidth": "",
-		"value": "",
 		"prop": "",
 		"span": {
 			"span": 24,
@@ -1006,7 +998,6 @@ export const basicComponents = {
 		"type": "PIRate",
 		"label": "评分",
 		"labelWidth": "",
-		"value": 0,
 		"prop": "",
 		"span": {
 			"span": 24,
@@ -1080,7 +1071,6 @@ export const basicComponents = {
 		"type": "PICascader",
 		"label": "级联",
 		"labelWidth": "",
-		"value": "",
 		"prop": "",
 		"span": {
 			"span": 24,
@@ -1379,13 +1369,12 @@ export const basicComponents = {
 				}]
 			}
 		], null, 2),
-		//"children": []
+		"children": []
 	},
 	"switch": {
 		"type": "PISwitch",
 		"label": "开关",
 		"labelWidth": "",
-		"value": "false",
 		"prop": "",
 		"span": {
 			"span": 24,
@@ -1439,7 +1428,6 @@ export const basicComponents = {
 		"type": "PISlider",
 		"label": "滑块",
 		"labelWidth": "",
-		"value": 0,
 		"prop": "",
 		"span": {
 			"span": 24,

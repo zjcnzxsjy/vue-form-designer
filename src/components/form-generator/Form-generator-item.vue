@@ -21,20 +21,28 @@
       :label="widget.options.label">
     </component>
     </template>
-    <template v-else>
+    <template v-else-if="remoteDataSource.includes(widget.type)">
       <component 
         :is="widget.type"
         :value="formGenerator.model[widget.prop]"
         :prop="widget.prop"
         :options="widget.options"
-        :children="widget.dataSourceType === 'static' && widget.dataSource? JSON.parse(widget.dataSource) : null">
+        :children="widget.children">
+      </component>
+    </template>
+    <template v-else>
+      <component 
+        :is="widget.type"
+        :value="formGenerator.model[widget.prop]"
+        :prop="widget.prop"
+        :options="widget.options">
       </component>
     </template>
   </el-form-item>
 </template>
 <script>
 import {registerModules} from '@/utils/Register';
-import { isEmpty, isNumber } from "lodash"
+import { isEmpty, isNumber } from "lodash-es"
 
 let modules = require.context('./widgets', false, /\.vue$/);
 modules = Object.assign({}, registerModules(modules));
@@ -224,6 +232,7 @@ export default {
     return {
       dateTypes: Object.freeze(["date", "daterange", "datetime", "datetimerange", "year", "month"]),
       showGridButtonItems: Object.freeze(["PISearchButton", "PIResetButton", "PICustomButton"]),
+      remoteDataSource: Object.freeze(["PISelect", "PICheckbox", "PIRadio", "PICascader"]),
       PIDatePicker: "PIDatePicker"
     }
   },

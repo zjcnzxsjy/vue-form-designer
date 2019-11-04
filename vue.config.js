@@ -3,7 +3,7 @@ function resolve(dir) {
   return path.join(__dirname, dir)
 }
 
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+//const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
   publicPath: "./",
@@ -12,15 +12,12 @@ module.exports = {
     port: 8091,
   },
   lintOnSave: false,
-  // configureWebpack: config => {
-  //   if (process.env.NODE_ENV === 'production') {
-  //     return {
-  //       plugins: [
-  //         new BundleAnalyzerPlugin()
-  //       ]
-  //     }
-  //   }
-  // },
+  configureWebpack: {
+    output: {
+      library: "VueFormDesigner",
+      libraryExport: 'default'
+    }
+  },
   chainWebpack: config => {
     config.module
       .rule('svg')

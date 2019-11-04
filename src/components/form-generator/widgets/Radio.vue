@@ -34,17 +34,12 @@ import mixins from '@/components/form-generator/mixins'
 export default {
   name: "PIRadio",
   props: {
-    value: String,
+    value: [String, Number, Boolean],
     options: Object,
     prop: String,
     children: Array
   },
-  mixins: [mixins],
-  data(){
-     return {
-       currentValue:""
-     }
-  }
+  mixins: [mixins]
 }
 </script>
 <style lang="scss" scoped>
