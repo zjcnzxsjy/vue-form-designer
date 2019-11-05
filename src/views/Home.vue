@@ -12,12 +12,6 @@ export default {
   components: {
     formDesinger
   },
-  created() {
-    axios.get('/mock-data/radioMockData')
-    .then(res => {
-      console.log(res)
-    })
-  },
   methods: {
     handleGetRemoteDataSource(data, apiDataSource, transferKey) {
       

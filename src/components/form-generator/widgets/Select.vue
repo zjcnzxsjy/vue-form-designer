@@ -20,7 +20,10 @@ import mixins from '@/components/form-generator/mixins'
 export default {
   name: "PISelect",
   props: {
-    value: [String, Array, Number],
+    value: {
+      type: [String, Array, Boolean, Number],
+      default: null
+    },
     options: Object,
     prop: String,
     children: Array,

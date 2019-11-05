@@ -389,6 +389,10 @@ export default {
     },
     handleRemoveWidget(i) {
       const findIndex = this.layout.findIndex(item => item.i === i);
+      const prop = this.layout[findIndex].prop;
+      if (prop in this.model) {
+        this.$delete(this.model, prop);
+      }
       this.layout.splice(findIndex, 1);
       this.currentIndex = this.formId;;
     },
