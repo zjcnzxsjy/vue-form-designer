@@ -199,6 +199,11 @@ export default {
           widget: "text",
           children: [
             {
+              label: "带建议文本",
+              iconClass: "text",
+              widget: "autocomplete"
+            },
+            {
               label: "多行文本",
               iconClass: "textarea",
               widget: "textarea"

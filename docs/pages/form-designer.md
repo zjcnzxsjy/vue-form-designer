@@ -1,6 +1,6 @@
 # form-designer设计器
 ## 例子
-```
+```html
 <form-desinger
   :data="data">
 </form-desinger>

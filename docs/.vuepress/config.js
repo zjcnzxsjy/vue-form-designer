@@ -1,6 +1,9 @@
 module.exports = {
   title: 'Vue form designer',
   description: '基于element-ui的表单可视化设计器',
+  markdown: {
+    lineNumbers: true // 代码块显示行号
+  },
   themeConfig: {
     nav: [
       {
@@ -12,8 +15,8 @@ module.exports = {
         link: '/pages/form-designer'
       },
       {
-        text: '配置参考',
-        link: '/pages/config/'
+        text: '使用说明',
+        link: '/pages/use/'
       }
     ],
     sidebar: {
@@ -32,6 +35,15 @@ module.exports = {
           children: [
             '/pages/form-designer',
             '/pages/form-generator'
+          ]
+        },
+        {
+          title: '使用说明',
+          collapsable: false,
+          children: [
+            '/pages/use',
+            '/pages/form-layout',
+            '/pages/datasource'
           ]
         }
       ]

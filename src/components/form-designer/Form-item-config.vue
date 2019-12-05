@@ -452,7 +452,7 @@ export default {
         },
       ]),
       showGridButtonItems: Object.freeze(["PISearchButton", "PIResetButton", "PICustomButton"]),
-      showDataSource: Object.freeze(["PISelect", "PIRadio", "PICheckbox", "PICascader"]),
+      showDataSource: Object.freeze(["PIAutocomplete", "PISelect", "PIRadio", "PICheckbox", "PICascader"]),
       staticDataSource: "",
       apiDataSource: "",
       dataSourceType: this.data.dataSourceType,

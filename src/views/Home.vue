@@ -13,24 +13,6 @@ export default {
     formDesinger
   },
   methods: {
-    handleGetRemoteDataSource(data, apiDataSource, transferKey) {
-      
-      data.children = [
-        {
-          "label": "a",
-          "value": "a"
-        },
-        {
-          "label": "b",
-          "value": "b"
-        },
-        {
-          "label": "c",
-          "value": "c"
-        }
-      ];
-      console.log(data)
-    }
   }
 }
 </script>

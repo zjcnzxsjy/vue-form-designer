@@ -95,6 +95,11 @@ export const basicComponents = {
 				"value": true,
 				"type": "checkbox"
 			},
+			"show-password": {
+				"label": "显示切换密码图标",
+				"value": false,
+				"type": "checkbox"
+			},
 			"validate-event": {
 				"label": "输入时是否触发表单的校验",
 				"value": true,
@@ -106,6 +111,106 @@ export const basicComponents = {
 				"type": "input"
 			}
 		}
+	},
+	"autocomplete": {
+		"type": "PIAutocomplete",
+		"label": "带建议",
+		"labelWidth": "",
+		"prop": "",
+		"span": {
+			"span": 24,
+			"lg": 24,
+			"md": 24,
+			"sm": 24,
+			"xs": 24
+		},
+		"required": false,
+		"validRules": [],
+		"rules": {},
+		"options": {
+			"placeholder": {
+				"label": "占位文本",
+				"value": "请输入",
+				"type": "input"
+			},
+			"disabled": {
+				"label": "禁用状态",
+				"value": false,
+				"type": "checkbox"
+			},
+			"debounce": {
+				"label": "获取输入建议的去抖延时",
+				"value": 300,
+				"type": "input-number"
+			},
+			"placement": {
+				"label": "菜单弹出位置",
+				"value": "bottom-start",
+				"type": "select",
+				"children": [
+					{
+						"label": "top",
+						"value": "top"
+					},
+					{
+						"label": "top-start",
+						"value": "top-start"
+					},
+					{
+						"label": "top-end",
+						"value": "top-end"
+					},
+					{
+						"label": "bottom",
+						"value": "bottom"
+					},
+					{
+						"label": "bottom-start",
+						"value": "bottom-start"
+					},
+					{
+						"label": "bottom-end",
+						"value": "bottom-end"
+					}
+				]
+			},
+			"trigger-on-focus": {
+				"label": "输入框 focus 时显示建议列表",
+				"value": true,
+				"type": "checkbox"
+			},
+			"prefix-icon": {
+				"label": "输入框头部图标",
+				"value": "",
+				"type": "input"
+			},
+			"suffix-icon": {
+				"label": "输入框尾部图标",
+				"value": "",
+				"type": "input"
+			},
+			"hide-loading": {
+				"label": "隐藏远程加载时的加载图标",
+				"value": false,
+				"type": "checkbox"
+			},
+			"popper-append-to-body": {
+				"label": "下拉列表插入至 body 元素",
+				"value": true,
+				"type": "checkbox"
+			},
+			"highlight-first-item": {
+				"label": "默认突出显示远程搜索建议中的第一项",
+				"value": false,
+				"type": "checkbox"
+			}
+		},
+		"dataSourceType": "static",
+		"dataSource": JSON.stringify([
+			{
+				
+			}
+		])
 	},
 	"textarea": {
 		"type": "PITextarea",

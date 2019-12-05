@@ -1,13 +1,13 @@
 # form-generator解析器
 ## 例子
-```
+```html
 <form-generator 
     :schema="schema" 
     :model="model">
 </form-generator>
 ```
 schema参数
-```
+```json
 {
   "config": {
     "type": "PIForm",
@@ -163,10 +163,10 @@ schema参数
 }
 ```
 model参数
-```
+```json
 {
-    text: "文本",
-    date: "2019-01-01",
-    switch: true
+    "text": "文本",
+    "date": "2019-01-01",
+    "switch": true
 }
 ```
