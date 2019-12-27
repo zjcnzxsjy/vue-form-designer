@@ -3,7 +3,7 @@ function resolve(dir) {
   return path.join(__dirname, dir)
 }
 
-//const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
   publicPath: "./",
@@ -12,11 +12,30 @@ module.exports = {
     port: 8091,
   },
   lintOnSave: false,
-  configureWebpack: {
-    output: {
-      library: "VueFormDesigner",
-      libraryExport: 'default'
-    }
+  configureWebpack: config => {
+    config.performance = {
+      hints:'warning',
+      //入口起点的最大体积 整数类型（以字节为单位）
+      maxEntrypointSize: 50000000,
+      //生成文件的最大体积 整数类型（以字节为单位 300k）
+      maxAssetSize: 30000000,
+      //只给出 js 文件的性能提示
+      assetFilter: function(assetFilename) {
+          return assetFilename.endsWith('.js');
+      }
+    };
+    // if (process.env.NODE_ENV === "production") {
+    //   //为生产环境打包分析体积...
+    //   //config.mode = "production";
+    //   return {
+    //     plugins: [
+    //       new BundleAnalyzerPlugin({
+    //         analyzerHost: '192.168.94.184',
+    //         analyzerPort: 8999
+    //       })
+    //     ]
+    //   }
+    // }
   },
   chainWebpack: config => {
     config.module
@@ -36,5 +55,9 @@ module.exports = {
       .include
         .add(resolve('./src/assets/svgIcon'))
         .end()
+    // if (process.env.NODE_ENV === "production") {
+    //   config.plugin('webpack-bundle-analyzer')
+    //   .use(BundleAnalyzerPlugin)
+    // }
   }
 }

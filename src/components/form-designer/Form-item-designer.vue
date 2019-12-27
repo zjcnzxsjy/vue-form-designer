@@ -46,6 +46,7 @@
 <script>
 import { cloneDeep } from 'lodash-es'
 import {registerModules} from '@/utils/Register';
+import svgIcon from "@/components/svg-icon/SvgIcon"
 
 let modules = require.context('../form-generator/widgets', false, /\.vue$/);
 modules = Object.assign({}, registerModules(modules));
@@ -58,7 +59,8 @@ export default {
   name: "formItemDesigner",
   componentName: "formItemDesigner",
   components: {
-    ...formComponents
+    ...formComponents,
+    svgIcon
   },
   props: {
     i: [String, Number],

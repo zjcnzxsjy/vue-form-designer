@@ -317,17 +317,20 @@
 <script>
 import vueAceEditor from "@/components/vue-ace-editor/Vue-ace-editor"
 import clipboard from '@/utils/Clipboard' // use clipboard by v-directive
+import svgIcon from "@/components/svg-icon/SvgIcon"
 
 export default {
   name: "formItemConfig",
   components: {
-    vueAceEditor
+    vueAceEditor,
+    svgIcon
   },
   props: {
     data: {
       type: Object,
       default: {}
-    }
+    },
+    remoteMethod: Function
   },
   data() {
     return {
@@ -536,24 +539,25 @@ export default {
         }
       } else if (this.dataSourceType === "api"){
         this.data.dataSource = this.apiDataSource;
-        //this.$emit("getRemoteDataSource", this.data, this.apiDataSource, this.transferKey);
-        try {
-          this.data.dataSource = this.apiDataSource;
-          this.$emit("getRemoteDataSource", this.apiDataSource, this.transferKey);
-          data = (await this.$http.get(this.apiDataSource)).data.result_data;
-          console.log(data)
-          if (this.transferKey.on) {
-            data.forEach(item => {
-              item.label = item[this.transferKey.label];
-              item.value = item[this.transferKey.value];
-            })
-          }
-        } catch(err) {
-          console.log(err)
-          this.$message.error({
-            content: '请求失败'
-          });
+        if (typeof this.remoteMethod === "function") {
+          data = await this.remoteMethod({url: this.apiDataSource, transferKey: this.transferKey})
         }
+        // try {
+        //   this.$emit("getRemoteDataSource", this.apiDataSource, this.transferKey);
+        //   data = (await this.$http.get(this.apiDataSource)).data.result_data;
+        //   console.log(data)
+        //   if (this.transferKey.on) {
+        //     data.forEach(item => {
+        //       item.label = item[this.transferKey.label];
+        //       item.value = item[this.transferKey.value];
+        //     })
+        //   }
+        // } catch(err) {
+        //   console.log(err)
+        //   this.$message.error({
+        //     content: '请求失败'
+        //   });
+        // }
 
       }
       this.data.children = data;

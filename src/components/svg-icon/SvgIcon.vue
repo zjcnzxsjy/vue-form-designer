@@ -5,6 +5,12 @@
 </template>
 
 <script>
+/**
+ * @description 加载svg
+*/
+const req = require.context('@/assets/svgIcon', false, /\.svg$/);
+const requireAll = requireContext => requireContext.keys().map(requireContext);
+requireAll(req);
 export default {
   name: 'svgIcon',
   props: {

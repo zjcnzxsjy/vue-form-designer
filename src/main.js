@@ -3,7 +3,6 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 import ElementUI from "element-ui"
-import svgIcon from "@/components/svg-icon/SvgIcon"
 import './mock'
 import axios from "axios"
 
@@ -13,13 +12,7 @@ Vue.config.productionTip = false;
 Vue.use(ElementUI);
 
 Vue.prototype.$http = axios;
-/**
- * @description 加载svg
-*/
-const req = require.context('./assets/svgIcon', false, /\.svg$/);
-const requireAll = requireContext => requireContext.keys().map(requireContext);
-requireAll(req);
-Vue.component('svg-icon', svgIcon);
+
 
 new Vue({
   router,

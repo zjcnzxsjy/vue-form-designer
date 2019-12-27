@@ -35,8 +35,16 @@ export default {
     formGeneratorItem
   },
   props: {
-    schema: Object,  //表单结构
-    model: Object   //表单数据
+    schema: {
+      type: Object,
+      required: true
+    },  //表单结构
+    model: {
+      type: Object,
+      default: () => {
+        return {};
+      }
+    }   //表单数据
   },
   data() {
     return {

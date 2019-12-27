@@ -1,12 +1,14 @@
 {
   "name": "vue-form-designer",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
+  "main": "dist/vue-form-designer.common",
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "build-lib": "rimraf dist && vue-cli-service build --target lib ./src/components/index.js"
+    "build-lib": "rimraf dist && vue-cli-service build --target lib ./src/index.js",
+    "analyzer": "cross-env use_analyzer=true npm run build-lib"
   },
   "dependencies": {
     "axios": "^0.19.0",
@@ -15,7 +17,7 @@
     "element-ui": "^2.11.1",
     "lodash-es": "^4.17.15",
     "mockjs": "^1.1.0",
-    "simple-brace": "0.0.1",
+    "simple-brace": "0.0.2",
     "uuid": "^3.3.3",
     "vue": "^2.6.10",
     "vue-grid-layout": "^2.3.4",
@@ -28,6 +30,7 @@
     "@vue/cli-service": "^3.10.0",
     "@vue/eslint-config-standard": "^4.0.0",
     "babel-eslint": "^10.0.1",
+    "cross-env": "^6.0.3",
     "eslint": "^5.16.0",
     "eslint-plugin-vue": "^5.0.0",
     "node-sass": "^4.9.0",

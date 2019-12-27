@@ -124,7 +124,8 @@
           <form-config v-if="currentIndex === formId" :data="formConfigData"></form-config>
           <form-item-config 
             v-else 
-            :data="configData">
+            :data="configData"
+            :remoteMethod="remoteMethod">
           </form-item-config>
         </keep-alive>
       </div>
@@ -166,6 +167,7 @@ import { config2Schema } from "./util"
 import vueAceEditor from "@/components/vue-ace-editor/Vue-ace-editor"
 import clipboard from '@/directives/clipboard/index.js' // use clipboard by v-directive
 import uuidv1 from "uuid/v1"
+import svgIcon from "@/components/svg-icon/SvgIcon"
 
 export default {
   name: "formDesigner",
@@ -177,13 +179,15 @@ export default {
     formItemConfig,
     formItemDesigner,
     formGenerator,
-    vueAceEditor
+    vueAceEditor,
+    svgIcon
   },
   directives: {
     clipboard
   },
   props: {
-    data: Object
+    data: Object,
+    remoteMethod: Function
   },
   provide() {
     return {

@@ -1,6 +1,6 @@
 import Vue from "vue";
-import formDesigner from './form-designer/Form-designer.vue';
-import formGenerator from './form-generator/Form-generator.vue';
+import formDesigner from './components/form-designer/Form-designer.vue';
+import formGenerator from './components/form-generator/Form-generator.vue';
 
 
 const VueFormDesigner = {
