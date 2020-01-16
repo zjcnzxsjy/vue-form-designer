@@ -989,11 +989,6 @@ export const basicComponents = {
 					}
 				]
 			},
-			"format": {
-				"label": "日期格式",
-				"value": "",
-				"type": "input"
-			},
 			"placeholder": {
 				"label": "占位文本",
 				"value": "",

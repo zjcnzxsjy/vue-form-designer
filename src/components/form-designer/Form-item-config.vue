@@ -171,7 +171,7 @@
           </div>
         </div>
       </el-tab-pane>
-      <el-tab-pane label="数据">
+      <el-tab-pane label="数据" lazy>
         <div class="tab-panel-body">
           <div v-if="!showGridButtonItems.includes(data.type)" class="setting-panel-content">
             <div class="setting-controller">
@@ -250,7 +250,7 @@
                     </transition-group>
                   </div>
                   <div class="editor-wrapper">
-                    <vue-ace-editor
+                    <!-- <vue-ace-editor
                       key="static"
                       v-if="dataSourceType === 'static'" 
                       v-model="staticDataSource" 
@@ -265,7 +265,21 @@
                       lang="text" 
                       theme="idle_fingers"
                       :tabSize="2">
-                    </vue-ace-editor>
+                    </vue-ace-editor> -->
+                    <MonacoEditor
+                      key="static"
+                      v-if="dataSourceType === 'static'"
+                      language="json" 
+                      theme="vs-dark"
+                      v-model="staticDataSource">
+                    </MonacoEditor>
+                    <MonacoEditor
+                      key="api"
+                      v-if="dataSourceType === 'api'"
+                      language="plainText" 
+                      theme="vs-dark"
+                      v-model="apiDataSource">
+                    </MonacoEditor>
                     <div class="editor-action">
                       <span title="复制" @click="handleClipboard">
                         <svg-icon icon-class="copy" class-name="editor-icon"></svg-icon>
@@ -303,27 +317,37 @@
       :visible.sync="fullScreen"
       :append-to-body="true"
       custom-class="dialog-cls">
-      <vue-ace-editor
+      <!-- <vue-ace-editor
         ref="fullEditor" 
         v-model="dataSource" 
         :lang="dataSourceType === 'static'? 'json' : 'text'" 
         theme="idle_fingers"
         :tabSize="2"
         style="height:350px;">
-      </vue-ace-editor>
+      </vue-ace-editor> -->
+      <MonacoEditor
+        ref="fullEditor"
+        v-if="fullScreen"
+        height="300"
+        :language="dataSourceType === 'static'? 'json' : 'plainText'" 
+        theme="vs-dark"
+        v-model="dataSource">
+      </MonacoEditor>
     </el-dialog>
   </div>
 </template>
 <script>
-import vueAceEditor from "@/components/vue-ace-editor/Vue-ace-editor"
+// import vueAceEditor from "@/components/vue-ace-editor/Vue-ace-editor"
 import clipboard from '@/utils/Clipboard' // use clipboard by v-directive
 import svgIcon from "@/components/svg-icon/SvgIcon"
+import MonacoEditor from "@/components/vue-monaco-editor"
 
 export default {
   name: "formItemConfig",
   components: {
-    vueAceEditor,
-    svgIcon
+    // vueAceEditor,
+    svgIcon,
+    MonacoEditor
   },
   props: {
     data: {
@@ -859,6 +883,12 @@ body .select-down {
   .popper__arrow::after {
     border-bottom-color: #0e1013 !important;
     border-top-color: #0e1013 !important;
+  }
+}
+body .dialog-cls {
+  background: #222425;
+  .el-dialog__header > .el-dialog__title {
+    color: #2483FF;
   }
 }
 </style>

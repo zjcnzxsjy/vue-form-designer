@@ -146,7 +146,14 @@
       :visible.sync="showJSON"
       :close-on-click-modal="false"
       width='800'>
-      <vue-ace-editor v-if="showJSON" :value="schemaString" lang="json" theme="xcode" :readOnly="true" style="height:300px;"></vue-ace-editor>
+      <!-- <vue-ace-editor v-if="showJSON" :value="schemaString" lang="json" theme="xcode" :readOnly="true" style="height:300px;"></!-->
+      <MonacoEditor
+        v-if="showJSON"
+        language="json"
+        height="300"
+        theme="vs-dark"
+        v-model="schemaString">
+      </MonacoEditor>
       <div slot="footer">
         <el-button type="primary" icon="ios-copy-outline" v-clipboard:copy="schemaString" v-clipboard:success="handleCopy">复制</el-button>
         <el-button type="ghost" @click="handleClose('showJSON')">取消</el-button>
@@ -164,10 +171,11 @@ import formItemDesigner from './Form-item-designer';
 import { on, off } from "element-ui/src/utils/dom";
 import formGenerator from "@/components/form-generator/Form-generator"
 import { config2Schema } from "./util"
-import vueAceEditor from "@/components/vue-ace-editor/Vue-ace-editor"
+// import vueAceEditor from "@/components/vue-ace-editor/Vue-ace-editor"
 import clipboard from '@/directives/clipboard/index.js' // use clipboard by v-directive
 import uuidv1 from "uuid/v1"
 import svgIcon from "@/components/svg-icon/SvgIcon"
+import MonacoEditor from "@/components/vue-monaco-editor"
 
 export default {
   name: "formDesigner",
@@ -179,8 +187,9 @@ export default {
     formItemConfig,
     formItemDesigner,
     formGenerator,
-    vueAceEditor,
-    svgIcon
+    // vueAceEditor,
+    svgIcon,
+    MonacoEditor
   },
   directives: {
     clipboard
@@ -323,7 +332,7 @@ export default {
       this.formId = this.data.formConfigData.uid;
       this.currentIndex = this.data.formConfigData.uid;
     } else {
-      this.formId = uuidv1();
+      this.formId = uuidv1().replace(/\-/g, "");
       this.currentIndex = this.formId;
       this.formConfigData.uid = this.formId;
     }
@@ -337,7 +346,7 @@ export default {
     handleComponentClick(widget) {
       const length = this.layout.length;
       this.configData = cloneDeep(basicComponents[widget]);
-      const unique = uuidv1();
+      const unique = uuidv1().replace(/\-/g, "");
       this.configData.uid = unique;
       this.currentIndex = unique;
       this.layout.push(
@@ -387,7 +396,7 @@ export default {
     },
     handleCopyWidget(configData) {
       const length = this.layout.length;
-      const unique = uuidv1();
+      const unique = uuidv1().replace(/\-/g, "");
       this.layout.push(
         {
           // "x": 0,"y": 2 * length,"w":this.setGridw(configData),"h":2,"i": length, widget: configData
@@ -542,6 +551,12 @@ export default {
       background: #1c1f25;
       position: relative;
       transition: width .25s ease-in-out;
+    }
+  }
+  &/deep/ .el-dialog__wrapper .el-dialog:not(.is-fullscreen) {
+    background: #222425;
+    .el-dialog__header > .el-dialog__title {
+      color: #2483FF;
     }
   }
 }

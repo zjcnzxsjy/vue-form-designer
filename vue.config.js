@@ -4,6 +4,7 @@ function resolve(dir) {
 }
 
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const MonacoWebpackPlugin = require('monaco-editor-webpack-plugin');
 
 module.exports = {
   publicPath: "./",
@@ -59,5 +60,12 @@ module.exports = {
     //   config.plugin('webpack-bundle-analyzer')
     //   .use(BundleAnalyzerPlugin)
     // }
+    config.plugin('monaco-editor').use(MonacoWebpackPlugin, [
+      {
+        // Languages are loaded on demand at runtime
+        languages: ['json'],
+        features: ['find', 'folding']
+      }
+    ])
   }
 }
