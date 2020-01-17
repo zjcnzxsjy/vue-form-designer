@@ -15,7 +15,7 @@ npm install vue-form-designer --save
 import vueFormDesinger from "vue-form-designer"
 import 'vue-form-designer/dist/vue-form-designer.css'
 
-Vue.use(FormMaking)
+Vue.use(vueFormDesinger)
 ```
 #### 引入部分组件
 ```js
