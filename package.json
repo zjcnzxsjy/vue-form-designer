@@ -15,7 +15,7 @@
     "clipboard": "^2.0.4",
     "core-js": "^2.6.5",
     "element-ui": "^2.11.1",
-    "lodash-es": "^4.17.15",
+    "lodash-es": "^4.17.21",
     "mockjs": "^1.1.0",
     "monaco-editor": "^0.19.3",
     "simple-brace": "0.0.3",
